@@ -6,6 +6,7 @@ namespace Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
+
         public float Speed = 3.5f;
 
         public Weapon Weapon;
@@ -13,6 +14,7 @@ namespace Assets.Scripts
         private Vector2 _horizontalVerticalMove;
         private float _horizontalBoundLimit = 22f;
         private float _verticalBoundLimit = 4.4f;
+
 
 
         private void Update()
