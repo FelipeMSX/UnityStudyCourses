@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using Assets.Scripts.Behaviours;
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,6 +50,11 @@ namespace Assets.Scripts
             }
                 
             transform.position = new Vector3(transform.position.x,Mathf.Clamp(transform.position.y, -_verticalBoundLimit, _verticalBoundLimit), transform.position.z);
+        }
+
+        public void ChangeWeaponShoot(int pickupCode)
+        {
+            Weapon.ChangeWeaponStyle(pickupCode);
         }
     }
 }

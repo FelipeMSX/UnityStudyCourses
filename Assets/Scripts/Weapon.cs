@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Behaviours;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -33,6 +34,30 @@ namespace Assets.Scripts
 
             ShootBehaviour.Shoot();
             _nextTimetoFire = 0f;
+        }
+
+        public void ChangeWeaponStyle(int pickupCode)
+        {
+            if(pickupCode == 0)
+            {
+                Destroy(ShootBehaviour as SingleShootBehaviour);
+            }
+            else if (pickupCode == 1)
+            {
+                Destroy(ShootBehaviour as TripleShootBehaviour);
+            }
+
+            if (pickupCode == 0)
+            {
+                gameObject.AddComponent(typeof(SingleShootBehaviour));
+            }
+            else if (pickupCode == 1)
+            {
+                gameObject.AddComponent(typeof(TripleShootBehaviour));
+            }
+
+            ShootBehaviour = GetComponent<IShootBehaviour>();
+
         }
 
         private bool CanShoot() => _nextTimetoFire >= 1.0f;

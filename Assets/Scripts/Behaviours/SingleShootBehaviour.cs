@@ -33,6 +33,19 @@ public class SingleShootBehaviour : MonoBehaviour, IShootBehaviour
                 recyledProjectile.EnableRecyleRoutine(_weapon.ShootPosition.transform.position);
             }
 
+            ProjectileStandard recyledProjectile2 = _recycleProjectile.RecoverObject(ProjectilePrefab);
+            if (recyledProjectile2 == null)
+            {
+                GameObject _clonePrefab = Instantiate(ProjectilePrefab, _weapon.ShootPosition.transform.position, Quaternion.Euler(0f,0f, 35f));
+                ProjectileStandard projectileStandard = _clonePrefab.GetComponent<ProjectileStandard>();
+                projectileStandard.UpdateSpeed(Speed);
+                projectileStandard.OnTriggerEntered += OnTriggerEntered;
+            }
+            else
+            {
+                recyledProjectile2.EnableRecyleRoutine(_weapon.ShootPosition.transform.position);
+            }
+
         }
     }
 
